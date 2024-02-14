@@ -20,8 +20,8 @@ os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-clientID = "Cac65f856df134d1a5f54f5c4d955ce16b64ce1ed7be1c65c72c2ebab96af83f1"
-secretID = "195e3484ab3f3fb44337eca5f8fb292fd778361b1bf6bbfc0e0e063380db976c"
+clientID = ""
+secretID = ""
 redirectURI = "http://0.0.0.0:10060/oauth" #This could be different if you publicly expose this endpoint.
 
 
