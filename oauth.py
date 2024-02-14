@@ -20,8 +20,8 @@ os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-clientID = "YOUR CLIENT ID HERE"
-secretID = "YOUR CLIENT SECRET HERE"
+clientID = "Cac65f856df134d1a5f54f5c4d955ce16b64ce1ed7be1c65c72c2ebab96af83f1"
+secretID = "195e3484ab3f3fb44337eca5f8fb292fd778361b1bf6bbfc0e0e063380db976c"
 redirectURI = "http://0.0.0.0:10060/oauth" #This could be different if you publicly expose this endpoint.
 
 
@@ -130,7 +130,8 @@ def oauth():
         get_tokens(code)
         return render_template("granted.html")
     else:
-        return render_template("index.html")
+        print('****Invalid state passed in URL***')
+        return render_template("denied.html")
 
 """
 Funcion Name : spaces
@@ -158,12 +159,12 @@ def  spaces():
     spaces = []
     for i in range(len(r)) :
         spaces.append(r[i]['title'])
-
+        spaces.append(r[i]['id'])
     return render_template("spaces.html", spaces = spaces)
 
 def api_call() :
     accessToken = session['oauth_token']
-    url = "https://webexapis.com/v1/rooms"
+    url = "https://webexapis.com/v1/rooms?&max=10"
     headers = {'accept':'application/json','Content-Type':'application/json','Authorization': 'Bearer ' + accessToken}
     response = requests.get(url=url, headers=headers)
     return response
